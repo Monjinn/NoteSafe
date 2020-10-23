@@ -1,0 +1,86 @@
+﻿<Window x:Class="NoteSafe.AddCategoryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoteSafe"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Add category" Height="182.732" Width="279.1"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize"
+        ShowInTaskbar="false">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF494949" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF2A60AE" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF00268D" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
+    <StackPanel Background="#FFE0E0E0">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
+            <TextBlock TextWrapping="Wrap" Text="Name of a new category:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,10" FontSize="14"/>
+            <TextBox x:Name="TB_Category" HorizontalAlignment="Left" Height="23" Margin="15,0,0,0" TextWrapping="Wrap" Width="120" VerticalAlignment="Bottom" TextChanged="TB_TextChanged" >
+                <TextBox.Text>
+                    <Binding Path="Category" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:NewCategoryRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="0,20,0,0" Background="#FF73788F" Height="65">
+            <Border BorderThickness="0,1,0,0" BorderBrush="#FF787878" Padding="0" VerticalAlignment="Bottom" />
+            <Grid Height="32" Background="#FF73788F" Margin="0,15,0,0">
+                <Button x:Name="BTN_Accept" VerticalAlignment="Top" Margin="40,-4,0,0" Width="80" Click="Accept_Click" IsDefault="True" Height="30" HorizontalAlignment="Left" >
+                    <DockPanel>
+                        <Image Source="{StaticResource Icons_check_solidDrawingImage}" Margin="0,0,10,0" Height="20" Width="20" />
+                        <TextBlock Margin="-10,0,0,0">
+                            Accept
+                        </TextBlock>
+                    </DockPanel>
+                </Button>
+                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Margin="23,-4,40,0" Width="80" Click="Decline_Click" IsCancel="True" Height="30" >
+                    <DockPanel>
+                        <Image Source="{StaticResource Icons_ban_solidDrawingImage}" Margin="0,0,10,0" Height="20" Width="20" />
+                        <TextBlock Margin="-7,0,0,0">
+                            Cancel
+                        </TextBlock>
+                    </DockPanel>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>

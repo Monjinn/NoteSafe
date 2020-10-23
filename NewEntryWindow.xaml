@@ -1,0 +1,130 @@
+﻿<Window x:Class="NoteSafe.NewEntryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoteSafe"
+        mc:Ignorable="d"
+        Title="Entry" Height="343.056" Width="376.195" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        ShowInTaskbar="false">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF494949" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF2A60AE" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF00268D" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FF546B8D" />
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
+    <DockPanel Background="#FFE0E0E0">
+        <DockPanel VerticalAlignment="Top" Height="71" Background="#FF73788F" DockPanel.Dock="Bottom">
+            <Button x:Name="BTN_Accept" VerticalAlignment="Top" Width="109" Height="39" Click="Button_Click" HorizontalAlignment="Left" Margin="50,15,0,0" IsEnabled="False" IsDefault="True">
+                <DockPanel>
+                    <Image Source="{StaticResource Icons_check_solidDrawingImage}" Margin="-10,0,10,0" Height="20" Width="20" />
+                    <TextBlock>
+                            Accept
+                    </TextBlock>
+                </DockPanel>
+            </Button>
+            <Button VerticalAlignment="Top" Width="109" Height="39" Click="Button_Click_1" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,15,50,0" IsCancel="True">
+                <DockPanel>
+                    <Image Source="{StaticResource Icons_ban_solidDrawingImage}" Margin="-10,0,10,0" Height="20" Width="20" />
+                    <TextBlock>
+                            Cancel
+                    </TextBlock>
+                </DockPanel>
+            </Button>
+        </DockPanel>
+        <Border BorderThickness="0,1,0,0" BorderBrush="#FF787878" Padding="0" DockPanel.Dock="Bottom" />
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Height="300" Background="#FFE0E0E0" Margin="0,5,0,0">
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" >
+                <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,33,0" FontSize="14"/>
+                <TextBox TextChanged="TB_TextChanged" x:Name="TB_EntryName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+                    <TextBox.Text>
+                        <Binding Path="EntryName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:EntryFieldsRule Name="" Username="" Password=""/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                <Label Content="Category:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,14,0" FontSize="14"/>
+                <ComboBox x:Name="TB_EntryCategory" SelectionChanged="TB_EntryCategory_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                <Label Content="Username:" HorizontalAlignment="Left" Margin="0,0,8,0" FontSize="14" />
+                <TextBox x:Name="TB_EntryUsername" TextChanged="TB_TextChanged" Height="23" Width="120" HorizontalAlignment="Left" >
+                    <TextBox.Text>
+                        <Binding Path="EntryUsername" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:EntryFieldsRule Name="" Username="" Password=""/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,7,0,0">
+                <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,12,0" FontSize="14"/>
+                <Grid>
+                    <TextBox x:Name="TB_EntryPassword" TextChanged="TB_TextChanged" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120">
+                        <TextBox.Text>
+                            <Binding Path="EntryPassword" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <local:EntryFieldsRule Name="" Username="" Password=""/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <Expander Header="Generate" Height="130" HorizontalAlignment="Left" Margin="120,0,0,0">
+                        <Grid Background="#FFE5E5E5" Width="141">
+                            <Border BorderThickness="1,1,1,0" BorderBrush="#FF9E9E9E" Padding="0" />
+                            <CheckBox x:Name="CheckBox_NoSpecialChars" Content="No special characters" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                            <CheckBox x:Name="CheckBox_NoNumbers" Content="No numbers" VerticalAlignment="Top" Margin="5,25,0,0" />
+                            <Label Content="Length" Margin="0,45,0,0" />
+                            <Slider x:Name="Slider_PwLength" VerticalAlignment="Top" Margin="0,50,8,0" Maximum="50" Minimum="8" Width="80" AutoToolTipPlacement="TopLeft" HorizontalAlignment="Right"  />
+                            <Button Content="Generate password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Margin="5,75,0,0" Click="Button_Click_2"/>
+                        </Grid>
+                    </Expander>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

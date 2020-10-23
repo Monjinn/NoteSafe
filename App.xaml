@@ -1,0 +1,14 @@
+﻿<Application x:Class="NoteSafe.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NoteSafe"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+        <SolidColorBrush x:Key="IconColor" Color="#FFB9B9B9" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="Icons" Source="Icons/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

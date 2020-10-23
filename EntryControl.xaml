@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="NoteSafe.EntryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NoteSafe"
+             mc:Ignorable="d" MinWidth="450" MinHeight="130">
+    <UserControl.Resources>
+        <Storyboard x:Key="Storyboard_copy">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Storyboard_copy_pw">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <TextBlock x:Name="TB_EntryName" Text="Header" FontSize="14" FontWeight="Bold"  />
+        <Border BorderThickness="1" BorderBrush="Black" />
+        <StackPanel x:Name="Usernamebox" Height="20" Orientation="Horizontal" Margin="0,7,0,5">
+            <TextBlock Width="70" TextWrapping="Wrap" Text="Username: "/>
+            <TextBox x:Name="TB_EntryUsername" IsReadOnly="True" MinWidth="200" Width="200" />
+            <Button x:Name="BTN_CopyUsername" Margin="5,0,0,0" FontSize="11" Height="20" Width="113" >
+                <DockPanel Width="116">
+                    <TextBlock Margin="5,0,0,0">
+                            Copy to clipboard
+                    </TextBlock>
+                    <Image Source="{StaticResource Icons_copy_solidDrawingImage}" Margin="5,1,10,0" Height="10" Width="10" DockPanel.Dock="Right" />
+                </DockPanel>
+            </Button>
+            <TextBlock x:Name="textBlock1" Text="Copied to clipboard" Margin="5,0,0,0" Opacity="0" Foreground="#FF374A7E" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="70" TextWrapping="Wrap" Text="Password: "/>
+            <TextBox x:Name="TB_EntryPassword" IsReadOnly="True" MinWidth="200" Width="200"/>
+            <Button x:Name="BTN_CopyPassword" Margin="5,0,0,0" FontSize="11" Width="113" Height="20" >
+                <DockPanel Width="116">
+                    <TextBlock Margin="5,0,0,0">
+                            Copy to clipboard
+                    </TextBlock>
+                    <Image Source="{StaticResource Icons_copy_solidDrawingImage}" Margin="5,1,10,0" Height="10" Width="10" DockPanel.Dock="Right" />
+                </DockPanel>
+            </Button>
+            <TextBlock x:Name="textBlock" Text="Copied to clipboard" Margin="5,0,0,0" Opacity="0" Foreground="#FF374A7E"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <Button x:Name="BTN_Edit" Width="75"  Height="22" >
+                <DockPanel Width="70">
+                    <Image Source="{StaticResource Icons_edit_solidDrawingImage}" Margin="7,1,0,0" Height="12" Width="12" />
+                    <TextBlock Margin="8,0,0,0">
+                            Edit
+                    </TextBlock>
+                </DockPanel>
+            </Button>
+            <Button x:Name="BTN_Delete" Width="75" Margin="10,0,0,0" Background="#FFFF7575" Height="22" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderBrush" Value="#FFFF7575" />
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2" />
+                            </Style>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel Width="70">
+                    <Image Source="{StaticResource Icons_trash_alt_solidDrawingImage}" Margin="5,2,0,0" Height="12" Width="12" />
+                    <TextBlock Margin="5,0,0,0">
+                            Delete
+                    </TextBlock>
+                </DockPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
