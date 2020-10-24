@@ -24,6 +24,9 @@ NoteSafe is a program where you can save your personal notes and user credential
 - After that you can add entries
 
 ![Entry1](/images/new_entry1.png)
+
+- Additionally you can generate a random password for a new login
+
 ![Entry2](/images/new_entry2.png)
 
 - After adding an entry it will be shown on the main screen. And user credentials can be copied to clipboard.
