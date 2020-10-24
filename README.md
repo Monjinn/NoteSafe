@@ -12,23 +12,10 @@ NoteSafe is a program where you can save your personal notes and user credential
   When installing LocalDB select only express LocalDB installation to save disk space.
 
 ## Tutorial
-- First when the program opens up. There will be the main screen:
-
-![MainScreen](/images/main_screen.png)
-
+- First when the program opens up. There will be the main screen
 - You have to add a category to start
-
-![Category1](/images/main_screen2.png)
-![Category2](/images/category.png)
-
 - After that you can add entries
-
-![Entry1](/images/new_entry1.png)
-
 - Additionally you can generate a random password for a new login
-
-![Entry2](/images/new_entry2.png)
-
 - After adding an entry it will be shown on the main screen. And user credentials can be copied to clipboard.
 
-![Final](/images/final_main.png)
+<img src='imgs/tutorial.gif' width=512>
