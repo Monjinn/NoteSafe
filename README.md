@@ -1,6 +1,8 @@
 # NoteSafe
 NoteSafe is a program where you can save your personal notes and user credentials. Notesafe utilizes a local database that stores all data. This database is safe and locked by a password.
 
+**The project is still under development and is not yet complete (still in alpha). User discretion advised!**
+
 ## Table of contents
 1. Installation
 2. Tutorial
