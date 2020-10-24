@@ -8,8 +8,8 @@ NoteSafe is a program where you can save your personal notes and user credential
 ## Installation
 - Download installation files from "Releases page". 
 - After downloading the files, install using "NoteSafeSetup.msi"
-- Microsoft LocalDB is required to run the software and can be found at ...
-  When installin LocalDB select only express LocalDB installation to save disk space.
+- Microsoft LocalDB is required to run the software and can be found at https://go.microsoft.com/fwlink/?LinkID=866658
+  When installing LocalDB select only express LocalDB installation to save disk space.
 
 ## Tutorial
 ...
